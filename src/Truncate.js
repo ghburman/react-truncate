@@ -127,7 +127,9 @@ export default class Truncate extends Component {
             return;
         }
 
-        const targetWidth = target.parentNode.getBoundingClientRect().width;
+        // Floor targetWidth as workaround for discrepancy between the returned
+        // client rect width and what Canvas returns for string width (measureWidth)
+        const targetWidth = Math.floor(target.parentNode.getBoundingClientRect().width);
 
         // Delay calculation until parent node is inserted to the document
         // Mounting order in React is ChildComponent, ParentComponent
